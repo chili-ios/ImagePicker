@@ -4,9 +4,9 @@ import Photos
 
 public protocol ImagePickerDelegate: class {
 
-  func wrapperDidPress(imagePicker: ImagePickerController, images: [UIImage])
-  func doneButtonDidPress(imagePicker: ImagePickerController, images: [UIImage])
-  func cancelButtonDidPress(imagePicker: ImagePickerController)
+  func wrapperDidPress(imagePicker: ImagePickerController, images: [UIImage])->Void
+  func doneButtonDidPress(imagePicker: ImagePickerController, images: [UIImage])->Void
+  func cancelButtonDidPress(imagePicker: ImagePickerController)->Void
 }
 
 public class ImagePickerController: UIViewController {
