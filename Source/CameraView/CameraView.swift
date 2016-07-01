@@ -125,7 +125,7 @@ class CameraView: UIViewController, CLLocationManagerDelegate, CameraManDelegate
     layer.backgroundColor = Configuration.mainColor.CGColor
     layer.autoreverses = true
     layer.videoGravity = AVLayerVideoGravityResizeAspectFill
-
+    
     view.layer.insertSublayer(layer, atIndex: 0)
     layer.frame = view.layer.frame
     view.clipsToBounds = true
@@ -184,7 +184,7 @@ class CameraView: UIViewController, CLLocationManagerDelegate, CameraManDelegate
     cameraMan.flash(mapping[title] ?? .Auto)
   }
 
-  func takePicture(completion: () -> ()) {
+  func takePicture(cropSize:CGSize? = nil, completion: () -> ()) {
     guard let previewLayer = previewLayer else { return }
 
     UIView.animateWithDuration(0.1, animations: {
@@ -195,7 +195,7 @@ class CameraView: UIViewController, CLLocationManagerDelegate, CameraManDelegate
         }
     })
 
-    cameraMan.takePhoto(previewLayer, location: locationManager?.latestLocation) {
+    cameraMan.takePhoto(previewLayer, location: locationManager?.latestLocation, cropSize: cropSize) {
       completion()
       self.delegate?.imageToLibrary()
     }

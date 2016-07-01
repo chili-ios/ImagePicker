@@ -148,7 +148,7 @@ class CameraMan {
     }
   }
 
-  func takePhoto(previewLayer: AVCaptureVideoPreviewLayer, location: CLLocation?, completion: (() -> Void)? = nil) {
+  func takePhoto(previewLayer: AVCaptureVideoPreviewLayer, location: CLLocation?, cropSize:CGSize? = nil, completion: (() -> Void)? = nil) {
     guard let connection = stillImageOutput?.connectionWithMediaType(AVMediaTypeVideo) else { return }
 
     connection.videoOrientation = previewLayer.connection.videoOrientation
@@ -166,8 +166,15 @@ class CameraMan {
             }
             return
         }
-
-        self.savePhoto(image, location: location, completion: completion)
+        if let cropSize = cropSize{
+          let imageNewHeight = ceil(image.size.width/cropSize.width*cropSize.height)
+          let cropRect = CGRectMake(0, 0, imageNewHeight, image.size.width)
+          let imageRef: CGImageRef = CGImageCreateWithImageInRect(image.CGImage, cropRect)!
+          let croppedImage = UIImage(CGImage: imageRef, scale: image.scale, orientation: image.imageOrientation)
+          self.savePhoto(croppedImage, location: location, completion: completion)
+        }else{
+          self.savePhoto(image, location: location, completion: completion)
+        }
       }
     }
   }

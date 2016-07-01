@@ -131,7 +131,7 @@ extension ImagePickerController {
 
     view.addConstraint(NSLayoutConstraint(item: cameraController.view, attribute: .Height,
       relatedBy: .Equal, toItem: view, attribute: .Height,
-      multiplier: 1, constant: -BottomContainerView.Dimensions.height))
+      multiplier: 1, constant: 0))
   }
 }
 

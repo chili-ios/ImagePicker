@@ -130,6 +130,7 @@
 				29D699D71B70ABFC0021FA73 /* Resources */,
 				A0BD0958A43D0416D3FF9365 /* 📦 Embed Pods Frameworks */,
 				6821C4AC157C46704C0307CA /* 📦 Copy Pods Resources */,
+				56A06CFE046407FB7ED38C78 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,7 +153,6 @@
 				TargetAttributes = {
 					29D699D81B70ABFC0021FA73 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = LG4DBY4QF9;
 					};
 				};
 			};
@@ -188,6 +188,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		56A06CFE046407FB7ED38C78 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ImagePickerDemo/Pods-ImagePickerDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		6821C4AC157C46704C0307CA /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

@@ -69,6 +69,8 @@ public class ImagePickerController: UIViewController {
   public weak var delegate: ImagePickerDelegate?
   public var stack = ImageStack()
   public var imageLimit = 0
+  public var collapsePreviewsWhenTakingPicture = true
+  public var cropPictureToCameraSize = false
   var totalSize: CGSize { return UIScreen.mainScreen().bounds.size }
   var initialFrame: CGRect?
   var initialContentOffset: CGPoint?
@@ -306,10 +308,16 @@ public class ImagePickerController: UIViewController {
     bottomContainer.pickerButton.enabled = false
     bottomContainer.stackView.startLoader()
     let action: Void -> Void = { [unowned self] in
-      self.cameraController.takePicture { self.isTakingPicture = false }
+      var cropSize:CGSize?
+      if(self.cropPictureToCameraSize){
+        var size = self.cameraController.view.bounds.size
+        size.height = size.height - self.galleryView.bounds.height - self.bottomContainer.bounds.height
+        cropSize = size
+      }
+      self.cameraController.takePicture(cropSize){ self.isTakingPicture = false }
     }
 
-    if Configuration.collapseCollectionViewWhileShot {
+    if Configuration.collapseCollectionViewWhileShot && self.collapsePreviewsWhenTakingPicture {
       collapseGalleryView(action)
     } else {
       action()
