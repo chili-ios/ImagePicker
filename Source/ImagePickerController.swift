@@ -362,8 +362,12 @@ extension ImagePickerController: CameraViewDelegate {
       guard let asset = self.galleryView.assets.first else { return }
       self.stack.pushAsset(asset)
     }
-    galleryView.shouldTransform = true
+    
     bottomContainer.pickerButton.enabled = true
+    
+    guard self.collapsePreviewsWhenTakingPicture == true else { return }
+    
+    galleryView.shouldTransform = true
 
     UIView.animateWithDuration(0.3, animations: {
       self.galleryView.collectionView.transform = CGAffineTransformMakeTranslation(collectionSize.width, 0)
